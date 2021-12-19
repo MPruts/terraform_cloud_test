@@ -35,8 +35,8 @@ data "aws_caller_identity" "mytestcalleridentity" {}
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = local.my1_instance_type_map["prod"]
-  count = local.my2_count_ec2_map["prod"]
+  instance_type = local.my1_instance_type_map[terraform.workspace]
+  count = local.my2_count_ec2_map[terraform.workspace]
 
   tags = {
     Name = "Mikhail"
